@@ -1,56 +1,28 @@
 @extends('components.layouts.app')
 
+@section('title', 'Login')
 @section('content')
-    <div class="flex min-h-screen items-center justify-center bg-gray-100">
-        <div class="w-full max-w-md bg-white shadow-lg rounded-xl p-8">
-            <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
-
-            @if (session('error'))
-                <div class="mb-4 text-red-600 text-sm">
-                    {{ session('error') }}
-                </div>
-            @endif
-
-            <form method="POST" action="{{ route('login') }}">
+    <div class="flex items-center justify-center min-h-screen flex-col md:flex-row bg-gray-100">
+        <div class="pr-5 mb-5 text-center md:text-left">
+            <h1 class="text-4xl font-bold">{{ config('app.name', 'Laravel') }}</h1>
+            <h2 class="text-2xl max-w-md">A place to discover, learn, and explore the world of knowledge.</h2>
+        </div>
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
+            <form action="{{ route('login') }}" method="post">
                 @csrf
-
-                <!-- Email -->
                 <div class="mb-4">
-                    <label for="email" class="block text-sm font-medium">Email</label>
-                    <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-blue-200" />
-                    @error('email')
-                        <span class="text-sm text-red-500">{{ $message }}</span>
-                    @enderror
+                    <input type="email" name="email" id="email" class="border border-gray-300 p-2 w-full"
+                        placeholder="Email address" required>
                 </div>
-
-                <!-- Password -->
                 <div class="mb-4">
-                    <label for="password" class="block text-sm font-medium">Password</label>
-                    <input id="password" type="password" name="password" required
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-blue-200" />
-                    @error('password')
-                        <span class="text-sm text-red-500">{{ $message }}</span>
-                    @enderror
+                    <input type="password" name="password" id="password" class="border border-gray-300 p-2 w-full"
+                        placeholder="Password" required>
                 </div>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded w-full">Login</button>
+                <hr class="border-t border-gray-300 my-4">
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded w-full">Register</button>
 
-                <!-- Remember Me -->
-                <div class="mb-4 flex items-center">
-                    <input id="remember" type="checkbox" name="remember"
-                        class="h-4 w-4 text-blue-600 border-gray-300 rounded">
-                    <label for="remember" class="ml-2 text-sm">Remember Me</label>
-                </div>
-
-                <!-- Submit -->
-                <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">
-                    Login
-                </button>
             </form>
-
-            <p class="mt-4 text-sm text-center">
-                Don’t have an account?
-                <a href="{{ route('register') }}" class="text-blue-600 hover:underline">Register</a>
-            </p>
         </div>
     </div>
 @endsection
