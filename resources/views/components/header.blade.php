@@ -8,7 +8,19 @@
             <li><a href="#" class="hover:text-gray-300">Home</a></li>
             <li><a href="#" class="hover:text-gray-300">About</a></li>
             <li><a href="#" class="hover:text-gray-300">Contact</a></li>
-            <li><a href="{{ route('login') }}" class="hover:text-gray-300">Login</a></li>
+            @guest
+                <li><a href="{{ route('login') }}" class="hover:text-gray-300">Login</a></li>
+            @endguest
+
+            @auth
+                <li class="font-bold">{{ Auth::user()->name }}</li>
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="hover:text-gray-300">Logout</button>
+                    </form>
+                </li>
+            @endauth
         </ul>
 
         <!-- Mobile toggle button -->
@@ -22,7 +34,19 @@
         <li><a href="#" class="hover:text-gray-300">Home</a></li>
         <li><a href="#" class="hover:text-gray-300">About</a></li>
         <li><a href="#" class="hover:text-gray-300">Contact</a></li>
-        <li><a href="{{ route('login') }}" class="hover:text-gray-300">Login</a></li>
+        @guest
+            <li><a href="{{ route('login') }}" class="hover:text-gray-300">Login</a></li>
+        @endguest
+
+        @auth
+            <li class="font-bold">{{ Auth::user()->name }}</li>
+            <li>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="hover:text-gray-300">Logout</button>
+                </form>
+            </li>
+        @endauth
     </ul>
 
 </nav>
