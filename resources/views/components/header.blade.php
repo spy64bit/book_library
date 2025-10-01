@@ -1,5 +1,5 @@
 @php
-    $adminMenus = [['name' => 'My Books', 'url' => '#']];
+    $adminMenus = [['name' => 'My Books', 'url' => route('books.index')]];
     $userMenus = [['name' => 'My Collection', 'url' => '#']];
     $publicMenus = [['name' => 'Books', 'url' => '#']];
 @endphp
