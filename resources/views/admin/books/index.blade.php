@@ -3,9 +3,13 @@
 @section('title', 'Books')
 @section('content')
     <div class="container mx-auto px-4">
-        <h1 class="text-2xl font-bold mb-4">Book List</h1>
+        <div class="flex items-center justify-between my-4">
+            <h1 class="text-2xl font-bold mb-4">Book List</h1>
+            <a href="{{ route('admin.books.create') }}"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add New Book</a>
+        </div>
 
-        @if ($books->isEmpty())
+        @if ($model->isEmpty())
             <p>No books available.</p>
         @else
             <table class="table-auto w-full border-collapse border border-gray-300">
@@ -19,16 +23,35 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($books as $book)
+                    @foreach ($model as $book)
                         <tr>
                             <td class="border border-gray-300 px-4 py-2">{{ $book->title }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $book->author }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $book->category }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $book->published_year }}</td>
                             <td class="border border-gray-300 px-4 py-2">
-                                <a href="{{ route('books.show', $book->id) }}" class="text-blue-600 hover:underline">
-                                    View
+                                <a href="{{ route('admin.books.show', $book->id) }}" class="text-blue-600 hover:underline">
+                                    Edit
                                 </a>
+                                <!-- Trigger button -->
+                                <button
+                                    onclick="document.getElementById('deleteBook{{ $book->id }}').classList.remove('hidden')"
+                                    class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                                    Delete Book
+                                </button>
+
+                                <!-- Reusable dialog -->
+                                <x-dialog id="deleteBook{{ $book->id }}"
+                                    title="Are you sure you want to delete this book?">
+                                    <form method="POST" action="{{ route('admin.books.destroy', $book->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </x-dialog>
                             </td>
                         </tr>
                     @endforeach
@@ -36,7 +59,7 @@
             </table>
 
             <div class="mt-4">
-                {{ $books->links() }}
+                {{ $model->links() }}
             </div>
 
         @endif

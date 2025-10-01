@@ -7,7 +7,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::middleware(['auth', 'role:1'])->prefix('admin')->group(function () {
-    Route::get('/books', [BookController::class, 'index'])->name('books.index');
-    Route::get('/books/{id}', [BookController::class, 'show'])->name('books.show');
+Route::middleware(['auth', 'role:1'])->prefix('admin')->as('admin.')->group(function () {
+    Route::resource('books', BookController::class);
 });

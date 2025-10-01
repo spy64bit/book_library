@@ -18,7 +18,7 @@ trait BaseControllerTrait
 {
     public function index()
     {
-        $model = $this->model::paginate(10);
+        $model = $this->model::latest()->paginate(10);
 
         return view($this->viewPath.'.index', compact('model'));
     }

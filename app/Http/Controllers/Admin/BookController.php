@@ -22,8 +22,8 @@ class BookController extends Controller
         'title' => 'required|string|max:255',
         'author' => 'required|string|max:255',
         'category' => 'required|string|max:255',
-        'published_year' => 'required|integer|min:0|max:2025',
-        'description' => 'nullable|string',
+        'published_year' => 'required|integer|min:1500|max:2025',
+        'description' => 'required|string',
     ];
 
     // public function index()
