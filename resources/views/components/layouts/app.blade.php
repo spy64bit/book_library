@@ -8,11 +8,11 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="antialiased bg-gray-100">
+<body class="antialiased bg-gray-100 min-h-screen flex flex-col">
     <header>
         @include('components.header')
     </header>
-    <div>
+    <div class="container mx-auto mt-8 flex-1">
         @yield('content')
     </div>
     <footer>

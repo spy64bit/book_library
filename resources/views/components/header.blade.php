@@ -1,3 +1,9 @@
+@php
+    $adminMenus = [['name' => 'My Books', 'url' => '#']];
+    $userMenus = [['name' => 'My Collection', 'url' => '#']];
+    $publicMenus = [['name' => 'Books', 'url' => '#']];
+@endphp
+
 <nav class="bg-gray-800 text-white p-4">
     <div class="container mx-auto flex justify-between items-center">
         <!-- Logo -->
@@ -5,9 +11,23 @@
 
         <!-- Menu (hidden on mobile) -->
         <ul class="hidden md:flex space-x-4">
-            <li><a href="#" class="hover:text-gray-300">Home</a></li>
-            <li><a href="#" class="hover:text-gray-300">About</a></li>
-            <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+
+            @foreach ($publicMenus as $menu)
+                <li><a href="{{ $menu['url'] }}" class="hover:text-gray-300">{{ $menu['name'] }}</a></li>
+            @endforeach
+
+            @if (auth()->check() && auth()->user()->role_id === 2)
+                @foreach ($userMenus as $menu)
+                    <li><a href="{{ $menu['url'] }}" class="hover:text-gray-300">{{ $menu['name'] }}</a></li>
+                @endforeach
+            @endif
+
+            @if (auth()->check() && auth()->user()->role_id === 1)
+                @foreach ($adminMenus as $menu)
+                    <li><a href="{{ $menu['url'] }}" class="hover:text-gray-300">{{ $menu['name'] }}</a></li>
+                @endforeach
+            @endif
+
             @guest
                 <li><a href="{{ route('login') }}" class="hover:text-gray-300">Login</a></li>
             @endguest
@@ -30,10 +50,24 @@
     </div>
 
     <!-- Mobile Menu -->
-    <ul id="mobileMenu" class="flex flex-col items-center space-y-2 mt-2 md:hidden px-4">
-        <li><a href="#" class="hover:text-gray-300">Home</a></li>
-        <li><a href="#" class="hover:text-gray-300">About</a></li>
-        <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+    <ul id="mobileMenu" class="hidden md:hidden flex-col items-center space-y-2 mt-2 px-4">
+
+        @foreach ($publicMenus as $menu)
+            <li><a href="{{ $menu['url'] }}" class="hover:text-gray-300">{{ $menu['name'] }}</a></li>
+        @endforeach
+
+        @if (auth()->check() && auth()->user()->role_id === 2)
+            @foreach ($userMenus as $menu)
+                <li><a href="{{ $menu['url'] }}" class="hover:text-gray-300">{{ $menu['name'] }}</a></li>
+            @endforeach
+        @endif
+
+        @if (auth()->check() && auth()->user()->role_id === 1)
+            @foreach ($adminMenus as $menu)
+                <li><a href="{{ $menu['url'] }}" class="hover:text-gray-300">{{ $menu['name'] }}</a></li>
+            @endforeach
+        @endif
+
         @guest
             <li><a href="{{ route('login') }}" class="hover:text-gray-300">Login</a></li>
         @endguest
@@ -57,6 +91,12 @@
     const mobileMenu = document.getElementById('mobileMenu');
 
     toggleBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
+        if (mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('flex');
+        } else {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+        }
     });
 </script>

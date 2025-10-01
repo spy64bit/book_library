@@ -45,4 +45,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    protected static function booted(): void
+    {
+        static::creating(function ($user) {
+            $user->role_id = 2;
+        });
+    }
 }
