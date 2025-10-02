@@ -26,14 +26,12 @@ class BookComments extends Component
 
         $this->validate([
             'content' => 'required|string|max:1000',
-            'rating' => 'required|integer|min:1|max:5',
         ]);
 
         Comment::create([
             'user_id' => Auth::id(),
             'book_id' => $this->book->id,
             'content' => $this->content,
-            'rating' => $this->rating,
         ]);
 
         $this->content = '';
