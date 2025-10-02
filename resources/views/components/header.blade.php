@@ -1,6 +1,6 @@
 @php
     $adminMenus = [['name' => 'My Books', 'url' => route('admin.books.index')]];
-    $userMenus = [['name' => 'My Collection', 'url' => '#']];
+    $userMenus = [['name' => 'My Collection', 'url' => route('collection.index')]];
     $publicMenus = [['name' => 'Books', 'url' => route('books.index')]];
 @endphp
 

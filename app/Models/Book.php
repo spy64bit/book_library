@@ -17,4 +17,9 @@ class Book extends Model
         'published_year',
         'description',
     ];
+
+    public function favouritedBy()
+    {
+        return $this->belongsToMany(User::class, 'favourites')->withTimestamps();
+    }
 }

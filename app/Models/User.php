@@ -52,4 +52,9 @@ class User extends Authenticatable
             $user->role_id = 2;
         });
     }
+
+    public function favourites()
+    {
+        return $this->belongsToMany(Book::class, 'favourites')->withTimestamps();
+    }
 }

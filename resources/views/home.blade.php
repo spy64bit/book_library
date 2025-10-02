@@ -19,9 +19,13 @@
                                 <div class="h-6 bg-gray-200 mt-2 rounded"></div>
                                 @auth
                                     <div class="flex justify-end">
-                                        <button class="text-xl"
-                                            onclick="event.stopPropagation(); event.preventDefault(); alert('Feature coming soon!')">
-                                            <i class="bi bi-star"></i>
+                                        <button class="favourite-btn text-xl" data-id="{{ $book->id }}"
+                                            onclick="event.stopPropagation(); event.preventDefault();">
+                                            @if (auth()->user()->favourites->contains($book->id))
+                                                <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+                                            @else
+                                                <i class="bi bi-star"></i>
+                                            @endif
                                         </button>
                                     </div>
                                 @endauth
@@ -60,9 +64,13 @@
                                 <div class="h-6 bg-gray-200 mt-2 rounded"></div>
                                 @auth
                                     <div class="flex justify-end">
-                                        <button class="text-xl"
-                                            onclick="event.stopPropagation(); event.preventDefault(); alert('Feature coming soon!')">
-                                            <i class="bi bi-star"></i>
+                                        <button class="favourite-btn text-xl" data-id="{{ $book->id }}"
+                                            onclick="event.stopPropagation(); event.preventDefault();">
+                                            @if (auth()->user()->favourites->contains($book->id))
+                                                <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+                                            @else
+                                                <i class="bi bi-star"></i>
+                                            @endif
                                         </button>
                                     </div>
                                 @endauth
@@ -86,4 +94,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/favourite.js') }}"></script>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BaseControllerTrait;
 use App\Models\Book;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -32,5 +33,13 @@ class BookController extends Controller
         $mostViewed = Book::latest()->take(5)->get();
 
         return view('home', compact('newBooks', 'mostViewed'));
+    }
+
+    public function userFavourites()
+    {
+        $user = Auth::user();
+        $favouriteBooks = $user->favourites()->paginate(10);
+
+        return view('collection.index', compact('favouriteBooks'));
     }
 }
