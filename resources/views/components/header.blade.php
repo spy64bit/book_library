@@ -1,7 +1,7 @@
 @php
     $adminMenus = [['name' => 'My Books', 'url' => route('admin.books.index')]];
     $userMenus = [['name' => 'My Collection', 'url' => '#']];
-    $publicMenus = [['name' => 'Books', 'url' => '#']];
+    $publicMenus = [['name' => 'Books', 'url' => route('books.index')]];
 @endphp
 
 <nav class="bg-gray-800 text-white p-4">

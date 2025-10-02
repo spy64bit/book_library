@@ -15,10 +15,13 @@ class Dialog extends Component
 
     public $title;
 
-    public function __construct($id, $title)
+    public $icon;
+
+    public function __construct($id, $title, $icon = 'bi bi-exclamation-circle')
     {
         $this->id = $id;
         $this->title = $title;
+        $this->icon = $icon;
     }
 
     /**

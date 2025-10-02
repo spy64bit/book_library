@@ -30,17 +30,22 @@
                             <td class="border border-gray-300 px-4 py-2">{{ $book->category }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $book->published_year }}</td>
                             <td class="border border-gray-300 px-4 py-2">
-                                <a href="{{ route('admin.books.show', $book->id) }}" class="text-blue-600 hover:underline">
-                                    Edit
-                                </a>
-                                <!-- Trigger button -->
-                                <button
-                                    onclick="document.getElementById('deleteBook{{ $book->id }}').classList.remove('hidden')"
-                                    class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
-                                    Delete Book
-                                </button>
 
-                                <!-- Reusable dialog -->
+                                {{-- action buttons --}}
+                                <div class="flex space-x-4">
+                                    <a href="{{ route('admin.books.show', $book->id) }}"
+                                        class="text-blue-600 hover:text-blue-800 transition p-0">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <button
+                                        onclick="document.getElementById('deleteBook{{ $book->id }}').classList.remove('hidden')"
+                                        class="text-red-600 hover:text-red-800 transition p-0">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+
+
+                                {{-- dialog --}}
                                 <x-dialog id="deleteBook{{ $book->id }}"
                                     title="Are you sure you want to delete this book?">
                                     <form method="POST" action="{{ route('admin.books.destroy', $book->id) }}">
@@ -61,6 +66,8 @@
             <div class="mt-4">
                 {{ $model->links() }}
             </div>
+
+
 
         @endif
     </div>
