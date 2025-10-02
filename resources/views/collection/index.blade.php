@@ -17,14 +17,7 @@
 
                             @auth
                                 <div class="flex justify-end">
-                                    <button class="favourite-btn text-xl" data-id="{{ $book->id }}"
-                                        onclick="event.stopPropagation(); event.preventDefault();">
-                                        @if (auth()->user()->favourites->contains($book->id))
-                                            <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
-                                        @else
-                                            <i class="bi bi-star"></i>
-                                        @endif
-                                    </button>
+                                    <livewire:favourite :book="$book" :key="$book->id" />
                                 </div>
                             @endauth
                         </div>
@@ -45,8 +38,4 @@
         </div>
     </div>
 
-@endsection
-
-@section('scripts')
-    <script src="{{ asset('js/favourite.js') }}"></script>
 @endsection
