@@ -1,0 +1,35 @@
+<div class="book-comments space-y-4">
+    <h4 class="text-lg font-semibold">
+        Comments ({{ $book->comments->count() }})
+    </h4>
+
+    <div class="space-y-3">
+        @foreach ($book->comments->load('user')->sortByDesc('created_at') as $comment)
+            <div class="comment p-4 border rounded-md bg-gray-50">
+                <strong class="text-gray-800">{{ $comment->user->name }}</strong>
+                <p class="text-gray-700 mt-1">{{ $comment->content }}</p>
+                <small class="text-gray-500 text-sm">{{ $comment->created_at->diffForHumans() }}</small>
+            </div>
+        @endforeach
+    </div>
+
+    @auth
+        <form wire:submit="addComment" class="space-y-2">
+            <textarea wire:model="content" class="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                rows="2" placeholder="Write a comment..." required>
+            </textarea>
+            @error('content')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+            <button type="submit" wire:loading.attr="disabled"
+                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition disabled:opacity-50">
+                <span wire:loading.remove>Post Comment</span>
+                <span wire:loading>Posting...</span>
+            </button>
+        </form>
+    @else
+        <p class="text-gray-600">
+            <a href="{{ route('login') }}" class="text-blue-600 hover:underline">Login</a> to comment.
+        </p>
+    @endauth
+</div>

@@ -22,4 +22,9 @@ class Book extends Model
     {
         return $this->belongsToMany(User::class, 'favourites')->withTimestamps();
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

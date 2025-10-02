@@ -14,6 +14,11 @@
                 <p class="text-gray-800">{{ $model->description }}</p>
             </div>
         </div>
+
+        <div class="mt-8">
+            <livewire:book-comments :book="$model" />
+        </div>
+
     </div>
 
 @endsection

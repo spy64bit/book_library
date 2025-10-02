@@ -9,6 +9,7 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     @vite('resources/css/app.css')
+    @livewireStyles
 </head>
 
 <body class="antialiased bg-gray-100 min-h-screen flex flex-col">
@@ -23,6 +24,7 @@
     </footer>
 
     @yield('scripts')
+    @livewireScripts
 </body>
 
 </html>
