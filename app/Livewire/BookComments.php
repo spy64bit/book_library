@@ -4,12 +4,13 @@ namespace App\Livewire;
 
 use App\Models\Book;
 use App\Models\Comment;
-use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class BookComments extends Component
 {
     public Book $book;
+
     public string $content = '';
 
     public function mount(Book $book)
@@ -19,18 +20,20 @@ class BookComments extends Component
 
     public function addComment()
     {
-        if (!Auth::check()) {
+        if (! Auth::check()) {
             return;
         }
 
         $this->validate([
-            'content' => 'required|string|max:1000'
+            'content' => 'required|string|max:1000',
+            'rating' => 'required|integer|min:1|max:5',
         ]);
 
         Comment::create([
             'user_id' => Auth::id(),
             'book_id' => $this->book->id,
-            'content' => $this->content
+            'content' => $this->content,
+            'rating' => $this->rating,
         ]);
 
         $this->content = '';
