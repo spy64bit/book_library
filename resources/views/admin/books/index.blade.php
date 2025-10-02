@@ -33,7 +33,7 @@
 
                                 {{-- action buttons --}}
                                 <div class="flex space-x-4">
-                                    <a href="{{ route('admin.books.show', $book->id) }}"
+                                    <a href="{{ route('admin.books.edit', $book->id) }}"
                                         class="text-blue-600 hover:text-blue-800 transition p-0">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
