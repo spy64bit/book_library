@@ -6,9 +6,10 @@
     <div class="space-y-3">
         @foreach ($book->comments->load('user')->sortByDesc('created_at') as $comment)
             <div class="comment p-4 border rounded-md bg-gray-50">
-                <strong class="text-gray-800">{{ $comment->user->name }}</strong>
+                <strong class="text-gray-800 pr-4">{{ $comment->user->name }}</strong><small
+                    class="text-gray-500 text-sm">{{ $comment->created_at->diffForHumans() }}</small>
                 <p class="text-gray-700 mt-1">{{ $comment->content }}</p>
-                <small class="text-gray-500 text-sm">{{ $comment->created_at->diffForHumans() }}</small>
+
             </div>
         @endforeach
     </div>
@@ -21,11 +22,14 @@
             @error('content')
                 <span class="text-red-500 text-sm">{{ $message }}</span>
             @enderror
-            <button type="submit" wire:loading.attr="disabled"
-                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition disabled:opacity-50">
-                <span wire:loading.remove>Post Comment</span>
-                <span wire:loading>Posting...</span>
-            </button>
+            <div class="flex justify-end">
+                <button type="submit" wire:loading.attr="disabled"
+                    class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition disabled:opacity-50">
+                    <span wire:loading.remove>Post Comment</span>
+                    <span wire:loading>Posting...</span>
+                </button>
+            </div>
+
         </form>
     @else
         <p class="text-gray-600">

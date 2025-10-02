@@ -19,14 +19,7 @@
                                 <div class="h-6 bg-gray-200 mt-2 rounded"></div>
                                 @auth
                                     <div class="flex justify-end">
-                                        <button class="favourite-btn text-xl" data-id="{{ $book->id }}"
-                                            onclick="event.stopPropagation(); event.preventDefault();">
-                                            @if (auth()->user()->favourites->contains($book->id))
-                                                <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
-                                            @else
-                                                <i class="bi bi-star"></i>
-                                            @endif
-                                        </button>
+                                        <livewire:favourite :book="$book" :key="$book->id" />
                                     </div>
                                 @endauth
                             </div>
@@ -64,14 +57,7 @@
                                 <div class="h-6 bg-gray-200 mt-2 rounded"></div>
                                 @auth
                                     <div class="flex justify-end">
-                                        <button class="favourite-btn text-xl" data-id="{{ $book->id }}"
-                                            onclick="event.stopPropagation(); event.preventDefault();">
-                                            @if (auth()->user()->favourites->contains($book->id))
-                                                <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
-                                            @else
-                                                <i class="bi bi-star"></i>
-                                            @endif
-                                        </button>
+                                        <livewire:favourite :book="$book" :key="$book->id" />
                                     </div>
                                 @endauth
                             </div>
