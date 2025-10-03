@@ -23,7 +23,7 @@
                 @endif
 
             </div>
-            <div class="flex items-start">
+            <div class="flex items-start shrink-0">
                 <a href="{{ route('books.index') }}"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded h-full">View
                     More</a>
@@ -47,7 +47,7 @@
                     @endfor
                 @endif
             </div>
-            <div class="flex items-start">
+            <div class="flex items-start shrink-0">
                 <a href="{{ route('books.index') }}"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded h-full">View
                     More</a>
