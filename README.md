@@ -8,7 +8,7 @@ A modern book library management system built with Laravel 12, Livewire, and Tai
 - **Database**: MySQL
 - **Authentication**: Laravel Fortify
 
-## ⚡ Quick Start (5 minutes)
+## ⚡ Quick Start
 
 ### Prerequisites
 - PHP 8.2 or higher
