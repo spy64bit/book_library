@@ -30,9 +30,12 @@ class BookController extends Controller
     public function latest()
     {
         $newBooks = Book::latest()->take(5)->get();
-        $mostViewed = Book::latest()->take(5)->get();
+        $highestRated = Book::withAvg('ratings', 'rating')
+            ->orderByDesc('ratings_avg_rating')
+            ->take(5)
+            ->get();
 
-        return view('home', compact('newBooks', 'mostViewed'));
+        return view('home', compact('newBooks', 'highestRated'));
     }
 
     public function userFavourites()

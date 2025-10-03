@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckRole
@@ -23,7 +24,11 @@ class CheckRole
         }
 
         if (! in_array($user->role_id, $roles)) {
-            abort(403, 'Unauthorized');
+            if ($request->expectsJson()) {
+                abort(403, 'Unauthorized');
+            }
+
+            return Auth::user() ? redirect()->route('home') : redirect()->route('login');
         }
 
         return $next($request);

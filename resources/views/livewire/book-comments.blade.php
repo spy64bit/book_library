@@ -38,16 +38,6 @@
                             class="text-gray-500 text-sm">{{ $comment->created_at->diffForHumans() }}</small>
                         <p class="text-gray-700 mt-1">{{ $comment->content }}</p>
                     </div>
-                    {{-- <div class="ml-4">
-                        @for ($i = 1; $i <= 5; $i++)
-                            @if ($comment->rating >= $i)
-                                <i class="bi bi-star-fill text-yellow-400"></i>
-                            @else
-                                <i class="bi bi-star text-gray-300"></i>
-                            @endif
-                        @endfor
-                        <span class="text-sm text-gray-500 ml-1">({{ $comment->rating }}/5)</span>
-                    </div> --}}
                 </div>
             </div>
         @endforeach
