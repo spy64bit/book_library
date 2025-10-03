@@ -24,7 +24,13 @@ class DatabaseSeeder extends Seeder
             'role_id' => 1,
         ]);
 
+        User::factory(100)->create();
+
         $this->call(BookSeeder::class);
+
+        $this->call(CommentSeeder::class);
+        $this->call(FavouriteSeeder::class);
+        $this->call(RatingSeeder::class);
 
     }
 }
