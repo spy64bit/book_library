@@ -9,14 +9,10 @@
                 @forelse ($favouriteBooks as $book)
                     <x-book-item :book="$book" />
                 @empty
-                    @for ($i = 0; $i < 10; $i++)
-                        <x-book_skeleton />
-                    @endfor
+                    <p class="text-center col-span-full">You haven't added any books to your collection yet.</p>
                 @endforelse
             @else
-                @for ($i = 0; $i < 10; $i++)
-                    <x-book_skeleton />
-                @endfor
+                <p class="text-center col-span-full">You haven't added any books to your collection yet.</p>
             @endif
         </div>
         <div class="mt-6">
