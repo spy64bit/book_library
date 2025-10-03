@@ -3,6 +3,7 @@
         <div>
             <h3 class="font-semibold text-sm truncate">{{ $book->title }}</h3>
             <p class="text-xs text-gray-600 mt-1 truncate">{{ $book->author }}</p>
+            <p class="text-xs text-gray-600 mt-1 truncate">{{ $book->category }}</p>
             <x-avg-rating :book="$book" />
         </div>
         <div class="h-6 bg-gray-200 mt-2 rounded"></div>
