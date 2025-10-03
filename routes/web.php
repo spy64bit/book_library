@@ -15,5 +15,5 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:1'])->prefix('admin')->as('admin.')->group(function () {
-    Route::resource('books', BookController::class);
+    Route::resource('books', BookController::class)->except(['show']);
 });
