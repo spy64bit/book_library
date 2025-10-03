@@ -13,7 +13,7 @@ A modern book library management system built with Laravel 12, Livewire, and Tai
 ### Prerequisites
 - PHP 8.2 or higher
 - Composer
-- Node.js & npm
+- Node.js & npm (for Tailwind CSS compilation)
 - MySQL (or XAMPP/Laragon)
 
 ### Installation
