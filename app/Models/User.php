@@ -50,7 +50,9 @@ class User extends Authenticatable
     protected static function booted(): void
     {
         static::creating(function ($user) {
-            $user->role_id = 2;
+            if (! isset($user->role_id)) {
+                $user->role_id = 2;
+            }
         });
     }
 
